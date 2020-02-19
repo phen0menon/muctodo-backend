@@ -6,16 +6,18 @@ from .models import *
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'is_staff']
-
-
-class TodoGroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TodoGroup
-        fields = "__all__"
+        fields = ['pk', 'username', 'email']
 
 
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
+        fields = "__all__"
+
+
+class TodoGroupSerializer(serializers.ModelSerializer):
+    todos = TodoSerializer(many=True)
+
+    class Meta:
+        model = TodoGroup
         fields = "__all__"
