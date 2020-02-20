@@ -16,6 +16,7 @@ class TodoGroup(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="todo_groups")
 
+    # Title of todo group
     title = models.CharField(verbose_name="Group title", max_length=150)
 
     def __str__(self):
@@ -33,7 +34,7 @@ class Todo(models.Model):
 
     # Todo group
     group = models.ForeignKey(
-        TodoGroup, on_delete=models.CASCADE, related_name="todos")
+        TodoGroup, on_delete=models.CASCADE, related_name="todos", null=True, blank=True)
 
     # Created at (datetime field)
     created_at = models.DateTimeField(
@@ -43,7 +44,8 @@ class Todo(models.Model):
     remind_at = models.DateTimeField(verbose_name="Remind at", null=True)
 
     # Ordering position
-    position = models.PositiveIntegerField(default=0, blank=False, null=True)
+    position = models.PositiveIntegerField(
+        default=0, blank=False, null=True)
 
     def __str__(self):
         return self.content

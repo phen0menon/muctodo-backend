@@ -15,8 +15,15 @@ class TodoSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class TodoGroupSerializer(serializers.ModelSerializer):
+class TodoGroupExtendedSerializer(serializers.ModelSerializer):
     todos = TodoSerializer(many=True)
+
+    class Meta:
+        model = TodoGroup
+        fields = "__all__"
+
+
+class TodoGroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TodoGroup
