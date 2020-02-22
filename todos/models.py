@@ -43,6 +43,9 @@ class Todo(models.Model):
     # Remind at (datetime field)
     remind_at = models.DateTimeField(verbose_name="Remind at", null=True)
 
+    # Completed
+    completed = models.BooleanField(verbose_name="Completed", default=False)
+
     # Ordering position
     position = models.PositiveIntegerField(
         default=0, blank=False, null=True)
