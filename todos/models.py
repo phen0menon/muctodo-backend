@@ -34,7 +34,7 @@ class Todo(models.Model):
 
     # Todo group
     group = models.ForeignKey(
-        TodoGroup, on_delete=models.CASCADE, related_name="todos", null=True, blank=True)
+        TodoGroup, on_delete=models.CASCADE, related_name="todos")
 
     # Created at (datetime field)
     created_at = models.DateTimeField(
