@@ -39,6 +39,11 @@ custom_schemas = {
             },
         ),
         "responses": {200: TodoGroupExtendedSerializer(many=True)}
+    },
+
+    "todogroup_list": {
+        "operation_description": "Create todo group with todo items in it for currently logged in user",
+        "responses": {200: TodoGroupExtendedSerializer(many=True)}
     }
 }
 
@@ -78,6 +83,7 @@ class TodoGroupViewSet(viewsets.ModelViewSet):
             headers=headers
         )
 
+    @swagger_auto_schema(**custom_schemas['todogroup_list'])
     def list(self, request):
         data = self.queryset.filter(user=request.user)
         serialized_data = self.serializer_extended_class(data, many=True)
